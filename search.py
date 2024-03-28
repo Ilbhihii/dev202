@@ -22,7 +22,8 @@ def Search():
         
         if rows:
             for row in rows:
-                call(["python", "test2.py", str(row[0]), str(row[1]), str(row[2]), str(row[3])], bufsize=0)
+                root.destroy()
+                call(["python", "Vente.py", str(row[0]), str(row[1]), str(row[2]), str(row[3])], bufsize=0)
         else:
             messagebox.showinfo("Information", "Aucun enregistrement trouvé pour cette référence")
     con.close()    

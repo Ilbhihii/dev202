@@ -25,6 +25,9 @@ def Afficher():
             displayed.add(row[0])
             con.close()
         
+def Switch():
+    root.destroy()
+    call(["python","Acceuil.py"],bufsize=0)
 
             
 
@@ -67,5 +70,6 @@ Table.column(9,width=20)
 Afficher()
 
 
+btnReturn=Button(root,text="<-",command=Switch).place(x=0,y=600)
 
 root.mainloop()

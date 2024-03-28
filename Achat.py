@@ -113,6 +113,7 @@ def Affichage():
            con.close()
 
 def Switch():
+    root.destroy()
     call(["python","Acceuil.py"], bufsize=0)
 
 root=Tk()
