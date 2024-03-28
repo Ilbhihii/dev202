@@ -12,7 +12,6 @@ password = ""
 dbname = "stock"
 
 
-
 def Afficher():
     displayed = set()
     con = mysql.connect(host=host, user=user, password=password, database=dbname)

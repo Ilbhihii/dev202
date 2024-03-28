@@ -126,34 +126,34 @@ Titre=Label(root,text="Gestion d'entrée",font=("Algerian",40),bg="#3D59AB")
 Titre.place(x=-150,y=0,width=1100,height=100)
 
 #Réference
-LbRéff=Label(root,text="Référence",bg="grey")
-LbRéff.place(x=45,y=150)
+LbRéff=Label(root,text="Référence",bg="grey",font=("Berlin Sans FB Demi",15))
+LbRéff.place(x=40,y=136)
 txtRéff=Entry(root)
-txtRéff.place(x=125,y=150,width=220)
+txtRéff.place(x=145,y=144,width=220)
 
 #Nom de Produit
-LbNomProd=Label(root,text="Nom de Produit",bg="grey")
-LbNomProd.place(x=30,y=200)
+LbNomProd=Label(root,text="Nom de Produit",bg="grey",font=("Berlin Sans FB Demi",13))
+LbNomProd.place(x=5,y=180)
 txtNomProd=Entry(root)
-txtNomProd.place(x=125,y=200,width=220)
+txtNomProd.place(x=145,y=186,width=220)
 
 #Date de reçus
-LbDate=Label(root,text="Date de Reçus",bg="grey")
-LbDate.place(x=35,y=250)
+LbDate=Label(root,text="Date de Reçus",bg="grey",font=("Berlin Sans FB Demi",14))
+LbDate.place(x=5,y=222)
 txtDate=DateEntry(root, background='darkblue', foreground='white', borderwidth=2,date_pattern='yyyy-mm-dd')
-txtDate.place(x=125,y=250, width=220)
+txtDate.place(x=145,y=230, width=220)
 
 #Nom de fournisseur
-LbForni=Label(root,text="fournisseur",bg="grey")
-LbForni.place(x=380,y=150)
+LbForni=Label(root,text="fournisseur",bg="grey",font=("Berlin Sans FB Demi",15))
+LbForni.place(x=400,y=136)
 txtForni=Entry(root)
-txtForni.place(x=460,y=150,width=220)
+txtForni.place(x=520,y=144,width=220)
 
 #Quantité
-LbQuantité=Label(root,text="Quantité",bg="grey")
-LbQuantité.place(x=380,y=200)
+LbQuantité=Label(root,text="Quantité",bg="grey",font=("Berlin Sans FB Demi",15))
+LbQuantité.place(x=400,y=180)
 txtQuantité=Entry(root)
-txtQuantité.place(x=460,y=200,width=220)
+txtQuantité.place(x=520,y=188,width=220)
 
 BtnSwitch=Button(root,text="<-",command=Switch).place(x=0,y=100)
 BtnInsert=Button(root,text="Insert",command=Insert).place(x=70,y=300,width=100)

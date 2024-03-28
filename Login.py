@@ -18,14 +18,14 @@ def Login():
         call(["python","Acceuil.py"],bufsize=0)
     else:
         messagebox.showerror("Error", "Nom d'utilisateur ou mot de passe incorrect.")
-
-
+    
 
 root=Tk()
 root.title("Gestion d'achat")
 root.geometry("400x250")
 root.resizable(False,False)
 root.configure(background="#B2DFEE")
+
 
 #Titre
 Title=Label(root,text="Connexion",font=("Algerian",30),bg="#1C86EE")
@@ -45,4 +45,6 @@ txPass.place(x=160,y=144,width=150)
 
 #Button connecter
 btnVali=Button(root,text="Login",command=Login).place(x=150,y=200,width=100)
+
+
 root.mainloop()
