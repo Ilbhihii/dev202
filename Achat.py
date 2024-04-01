@@ -56,7 +56,7 @@ def Update():
         messagebox.showinfo("Status", "Mise à jour effectuée avec succès")
         
         
-def Delete():
+def Archiver():
     
     if(txtRéff.get()==""):
         messagebox.showerror("Alert","s'il-te-plait entrer le nom de produit")
@@ -64,13 +64,15 @@ def Delete():
     else:
         con=mysql.connect(host=host,user=user,password=password,database=dbname)
         cursor=con.cursor()
-        cursor.execute("delete from entrée where Référence='"+txtRéff.get()+"'")
-        cursor.execute("commit")
+        cursor.execute("UPDATE entrée SET Archivé = 1 WHERE Référence = %s", (txtRéff.get(),))
+        con.commit()
+        cursor.execute("SELECT * FROM entrée WHERE Archivé = 0")   
+        
         for item in Table.get_children():
             if Table.item(item, "values")[0] == txtRéff.get():
                 Table.delete(item)
                 break
-        
+ 
     messagebox.showinfo("Status","Successfully deleted")
     con.close()
     
@@ -157,7 +159,7 @@ txtQuantité.place(x=520,y=188,width=220)
 
 BtnSwitch=Button(root,text="<-",command=Switch).place(x=0,y=100)
 BtnInsert=Button(root,text="Insert",command=Insert).place(x=70,y=300,width=100)
-BtnDelet=Button(root,text="Delete",command=Delete).place(x=230,y=300,width=100)
+BtnDelet=Button(root,text="Archiver",command=Archiver).place(x=230,y=300,width=100)
 BtnUpdate=Button(root,text="Update",command=Update).place(x=390,y=300,width=100)
 BtnSelect=Button(root,text="Select",command=Select).place(x=570,y=300,width=100)
 BtnAffiche=Button(root,text="Afficher",command=Affichage).place(x=250,y=350,width=100)

@@ -47,11 +47,11 @@ def Update():
     else:
         con = mysql.connect(host=host, user=user, password=password, database=dbname)
         cursor = con.cursor()
-        cursor.execute("UPDATE entrée SET  Datesortie = %s, Fournisseur = %s, QuantitéSotie = %s WHERE Référence = %s", (Datesortie, Fournisseur, QuantitéSotie, Référencesortie))
+        cursor.execute("UPDATE sortie SET  Datesortie = %s, Fournisseur = %s, QuantitéSotie = %s WHERE Référencesortie = %s", (Datesortie, Fournisseur, QuantitéSotie, Référencesortie))
         con.commit()
-        con.commit()
+
     
-def Delete():
+def Archiver():
     
     if(txtRéff.get()==""):
         messagebox.showerror("Alert","s'il-te-plait entrer le nom de produit")
@@ -59,14 +59,33 @@ def Delete():
     else:
         con=mysql.connect(host=host,user=user,password=password,database=dbname)
         cursor=con.cursor()
-        cursor.execute("delete from sortie where Référencesortie='"+txtRéff.get()+"'")
-        cursor.execute("commit")
+        cursor.execute("UPDATE sortie SET Archivé = 1 WHERE Référencesortie = %s", (txtRéff.get(),))
+        con.commit()
+        cursor.execute("SELECT * FROM entrée WHERE Archivé = 0")
         
     messagebox.showinfo("Status","Successfully deleted")
     con.close()
+    
+def Select():
+    if txtRéff.get()=="" :
+        messagebox.showerror("Alert","Donner ID pour afficher")
+        
+    else:
+        con = mysql.connect(host = host, user = user, password = password, database = dbname)
+        cursor = con.cursor()
+        cursor.execute("SELECT * FROM sortie WHERE 	Référencesortie=%s", (txtRéff.get(),))
+        rows=cursor.fetchall()
+        
+        for row in rows:
+            txtDate.delete(0, "end")
+            txtDate.set_date(row[1])
+            txtForni.insert("0",row[2])
+            txtQuantité.insert("0",row[3])
+        
+    con.close();
 
 def Switch():
-    root.destroy()
+    
     call(["python","Acceuil.py"], bufsize=0)
         
 root=Tk()
@@ -103,9 +122,11 @@ LbQuantité.place(x=380,y=195)
 txtQuantité=Entry(root)
 txtQuantité.place(x=500,y=200,width=220)
 
-BtnInsert=Button(root,text="Insert",command=Insert).place(x=200,y=300,width=100)
-BtnUpdat=Button(root,text="Update",command=Update).place(x=350,y=300,width=100)
-BtnDelete=Button(root,text="Delete",command=Delete).place(x=500,y=300,width=100)
-BtnDelete=Button(root,text="Return à la page d'acceuil",command=Switch).place(x=300,y=350,width=220)
+BtnInsert=Button(root,text="Insert",command=Insert).place(x=150,y=300,width=100)
+BtnUpdat=Button(root,text="Update",command=Update).place(x=300,y=300,width=100)
+BtnDelete=Button(root,text="Archiver",command=Archiver).place(x=450,y=300,width=100)
+BtnSelect=Button(root,text="Select",command=Select).place(x=600,y=300,width=100)
+Btnreturn=Button(root,text="Return à la page d'acceuil",command=Switch).place(x=300,y=350,width=220)
+
 
 root.mainloop()
