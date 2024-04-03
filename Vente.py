@@ -63,7 +63,7 @@ def Archiver():
         con.commit()
         cursor.execute("SELECT * FROM entrée WHERE Archivé = 0")
         
-    messagebox.showinfo("Status","Successfully deleted")
+    messagebox.showinfo("Status","Successfully Archivé")
     con.close()
     
 def Select():

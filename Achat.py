@@ -7,7 +7,6 @@ from tkinter import messagebox
 import mysql.connector as mysql
 
 
-
 host = "localhost"
 user = "root"
 password = ""
@@ -73,7 +72,7 @@ def Archiver():
                 Table.delete(item)
                 break
  
-    messagebox.showinfo("Status","Successfully deleted")
+    messagebox.showinfo("Status","Successfully Archivé")
     con.close()
     
 def Clear():
